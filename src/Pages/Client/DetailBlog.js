@@ -17,6 +17,7 @@ import { jwtDecode as jwt_decode } from "jwt-decode";
 import { SuccessAlert } from "../../Components/Alert/Alert"; // Import SuccessAlert
 import normalAvatar from "../../Assets/Client/Images/default-avatar.png";
 import DialogEditComment from "../../Components/Dialog/DialogEditComment";
+
 const DetailBlog = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
@@ -46,7 +47,6 @@ const DetailBlog = () => {
       setIsEditDialogOpen(false); // Đảm bảo Dialog sửa không mở
     }
   };
-
   // Hàm mở Dialog sửa
   // const handleClickOpenEditComment = (id, content) => {
   //   setSelectedID(id);
@@ -54,7 +54,6 @@ const DetailBlog = () => {
   //   setIsEditDialogOpen(true); // Mở Dialog sửa
   //   setIsDeleteDialogOpen(false); // Đảm bảo Dialog xóa không mở
   // };
-
   // Hàm đóng các Dialog
   const handleClose = () => {
     setIsDeleteDialogOpen(false); // Đóng Dialog xóa
@@ -62,7 +61,6 @@ const DetailBlog = () => {
     setSelectedID(null); // Reset selectedID
   };
 
-  // console.log("Check blogState:: ", blogState)
   const commentState = useSelector((state) => state.comment_blog);
 
   const [userId, setUserId] = useState(null);
@@ -128,14 +126,13 @@ const DetailBlog = () => {
 
   const formatMessageTimestamp = (timestamp) => {
     const now = new Date();
-    const timeDifference = now - new Date(timestamp); // Ensure timestamp is treated as Date
+    const timeDifference = now - new Date(timestamp);
     const minutesDifference = Math.floor(timeDifference / (1000 * 60));
 
-    // Format the timestamp in dd-MM-yyyy HH:mm format
     const formatCustom = (date) => {
       const pad = (num) => num.toString().padStart(2, "0");
       const day = pad(date.getDate());
-      const month = pad(date.getMonth() + 1); // Months are zero-indexed
+      const month = pad(date.getMonth() + 1);
       const year = date.getFullYear();
       const hours = pad(date.getHours());
       const minutes = pad(date.getMinutes());
@@ -143,45 +140,34 @@ const DetailBlog = () => {
       return `${day}-${month}-${year} ${hours}:${minutes}`;
     };
 
-    // Display time difference in a readable format
     if (minutesDifference < 1) {
-      return "Mới nhất"; // "Just now"
+      return "Just now";
     } else if (minutesDifference < 60) {
-      return `${minutesDifference} phút trước`; // e.g., "5 minutes ago"
+      return `${minutesDifference} minutes ago`;
     } else if (timeDifference < 24 * 60 * 60 * 1000) {
       const hoursDifference = Math.floor(minutesDifference / 60);
-      return `${hoursDifference} giờ trước`; // e.g., "2 hours ago"
+      return `${hoursDifference} hours ago`;
     } else {
-      // Return formatted timestamp as dd-MM-yyyy HH:mm
-      return formatCustom(new Date(timestamp)); // return in dd-MM-yyyy HH:mm format
+      return formatCustom(new Date(timestamp));
     }
   };
-
-  // const relatedPosts = Array.isArray(blogState.blog)
-  // ? blogState.blog
-  //   .filter((blog) => blog.id !== blogDetailState.blogDetail?.id)
-  //   .sort(() => Math.random() - 0.5) // Trộn ngẫu nhiên
-  //   .slice(0, 3) // Chỉ lấy 3 bài viết ngẫu nhiên
-  // : [];
 
   const relatedPosts = useMemo(() => {
     if (Array.isArray(blogState.blog)) {
       return blogState.blog
         .filter((blog) => blog.id !== blogDetailState.blogDetail?.id)
-        .sort(() => Math.random() - 0.5) // Shuffle randomly
-        .slice(0, 3); // Take only 3 random posts
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3);
     }
     return [];
   }, [blogState.blog, blogDetailState.blogDetail]);
 
-  // console.log("CHCK relatedPosts:: ", relatedPosts)
-
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    setErrors({}); // Reset errors
+    setErrors({});
 
     if (!newComment.content.trim()) {
-      setErrors({ content: "Nội dung bình luận không được để trống!" });
+      setErrors({ content: "Comment content cannot be empty!" });
       return;
     }
 
@@ -193,13 +179,12 @@ const DetailBlog = () => {
 
     dispatch(addCommentBlog(commentData))
       .then(() => {
-        // After successfully adding a comment, fetch the latest comments
-        dispatch(fetchCommentBlog("", 1, 10)); // Adjust parameters as needed
-        setNewComment((prevComment) => ({ ...prevComment, content: "" }));
+        dispatch(fetchCommentBlog("", 1, 10));
+        setNewComment((prev) => ({ ...prev, content: "" }));
         setShowSuccessAlert(true);
       })
       .catch((error) => {
-        console.error("Lỗi khi thêm bình luận:", error);
+        console.error("Error adding comment:", error);
       });
   };
 
@@ -207,7 +192,7 @@ const DetailBlog = () => {
     const accessToken = localStorage.getItem("accessToken");
 
     if (!accessToken) {
-      alert("Bạn cần đăng nhập để thực hiện hành động này!");
+      alert("You need to log in to perform this action!");
       return;
     }
 
@@ -216,7 +201,7 @@ const DetailBlog = () => {
         await dispatch(deleteCommentBlog(selectedID));
         handleClose();
         setShowSuccessAlert(true);
-        setOpenSuccess(true); // Hiển thị thông báo thành công
+        setOpenSuccess(true);
       } catch (error) {
         console.error("Error delete:", error);
       }
@@ -230,8 +215,8 @@ const DetailBlog = () => {
       );
       setShowSuccessAlert(true);
       setIsEditDialogOpen(false);
-      setEditingContent(""); // Clear content after successful edit
-      setSelectedID(null); // Reset selectedID
+      setEditingContent("");
+      setSelectedID(null);
     }
   };
 
@@ -241,21 +226,21 @@ const DetailBlog = () => {
       <div className="container-fluid p-0 py-5 bg-dark hero-header mb-5">
         <div className="container text-center my-5 pt-5 pb-4">
           <h1 className="display-3 text-white mb-3 animated slideInDown">
-            Chi Tiết Blog
+            Blog Details
           </h1>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb justify-content-center text-uppercase">
               <li className="breadcrumb-item">
-                <Link to="/">Trang chủ</Link>
+                <Link to="/">Home</Link>
               </li>
               <li className="breadcrumb-item">
-                <Link to="/blog">Bài viết & mẹo hay</Link>
+                <Link to="/blog">Articles & Tips</Link>
               </li>
               <li
                 className="breadcrumb-item text-white active"
                 aria-current="page"
               >
-                Chi Tiết Bài Viết
+                Article Details
               </li>
             </ol>
           </nav>
@@ -274,37 +259,23 @@ const DetailBlog = () => {
                 <h1 className="display-4 mb-4">
                   {blogDetailState.blogDetail.title}
                 </h1>
-                <p
-                  className="text-muted"
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    color: "#333",
-                  }}
-                >
-                  Ngày đăng:{" "}
+                <p className="text-muted" style={{ fontSize: "18px", fontWeight: "bold" }}>
+                  Published on{" "}
                   {new Date(
                     blogDetailState.blogDetail.created_at
-                  ).toLocaleDateString("vi-VN", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                  })}{" "}
-                  - Tác giả: {blogDetailState.blogDetail.author}
+                  ).toLocaleDateString("en-GB")}{" "}
+                  - Author: {blogDetailState.blogDetail.author}
                 </p>
               </div>
+
               <div className="mb-4 text-center">
                 <img
                   src={blogDetailState.blogDetail.poster}
                   className="img-fluid"
                   alt={blogDetailState.blogDetail.title}
-                  style={{
-                    maxHeight: "500px",
-                    objectFit: "cover",
-                    width: "100%",
-                  }}
                 />
               </div>
+
               <div
                 className="mb-5 blog-content"
                 dangerouslySetInnerHTML={{
@@ -317,23 +288,21 @@ const DetailBlog = () => {
           <SuccessAlert
             open={showSuccessAlert}
             onClose={() => setShowSuccessAlert(false)}
-            message="Thao tác thành công!"
+            message="Operation completed successfully!"
           />
 
-          {/* Phần bình luận */}
+          {/* Comments Section */}
           <div className="container mt-5">
-            <h3 className="text-center mb-4">Bình Luận</h3>
+            <h3 className="text-center mb-4">Comments</h3>
+
             <div className="comment-card card bg-light border-0 shadow-sm p-3 mb-5 rounded">
               <div className="card-body">
                 <div className="mb-4">
                   {commentState.loading ? (
-                    <Spinner /> // Hiển thị spinner trong khi đang tải bình luận
+                    <Spinner />
                   ) : filteredComments.length > 0 ? (
                     filteredComments.map((comment, index) => (
-                      <div
-                        className="media mb-4 p-3 bg-white rounded border"
-                        key={index}
-                      >
+                      <div className="media mb-4 p-3 bg-white rounded border" key={index}>
                         <div className="media-body">
                           <h6 className="mt-0 d-flex align-items-center">
                             <img
@@ -345,33 +314,23 @@ const DetailBlog = () => {
                               }
                               alt={comment.fullname || "Default Avatar"}
                               className="comment-avatar"
-                              style={{
-                                width: "40px",
-                                height: "40px",
-                                borderRadius: "50%",
-                                marginRight: "10px",
-                              }}
                             />
                             <span className="text-primary font-weight-bold">
                               {comment.fullname}
                             </span>
                           </h6>
+
                           <p className="mb-1">{comment.content}</p>
+
                           <div className="d-flex justify-content-between align-items-center">
                             <small className="text-muted">
                               {formatMessageTimestamp(comment.created_at)}
                             </small>
 
-                            {/* Hiển thị nút "Sửa" và "Xóa" nếu người dùng là chủ sở hữu bình luận */}
                             {userId === comment.user_id && (
                               <div className="comment-actions">
-                                {/* Nút "Sửa" */}
                                 <button
                                   className="btn text-muted btn-link btn-sm p-0"
-                                  style={{
-                                    fontSize: "12px",
-                                    marginRight: "10px",
-                                  }} // Thêm khoảng cách bên phải
                                   onClick={() =>
                                     handleClickOpen(
                                       "edit",
@@ -380,18 +339,16 @@ const DetailBlog = () => {
                                     )
                                   }
                                 >
-                                  Sửa
+                                  Edit
                                 </button>
 
-                                {/* Nút "Xóa" */}
                                 <button
                                   className="btn text-muted btn-link btn-sm p-0"
-                                  style={{ fontSize: "12px" }}
                                   onClick={() =>
                                     handleClickOpen("delete", comment.id)
-                                  } // Mở modal xóa
+                                  }
                                 >
-                                  Xóa
+                                  Delete
                                 </button>
                               </div>
                             )}
@@ -400,42 +357,33 @@ const DetailBlog = () => {
                       </div>
                     ))
                   ) : (
-                    <div className="alert alert-info">
-                      Chưa có bình luận nào!
-                    </div>
+                    <div className="alert alert-info">No comments yet!</div>
                   )}
                 </div>
 
-                {isLoggedIn && (
+                {isLoggedIn ? (
                   <form onSubmit={handleCommentSubmit}>
-                    <div className="form-group">
-                      <textarea
-                        className={`form-control bg-white text-dark ${
-                          errors.content ? "is-invalid" : ""
-                        }`}
-                        rows="3"
-                        placeholder="Nhập bình luận..."
-                        value={newComment.content}
-                        onChange={(e) =>
-                          setNewComment({
-                            ...newComment,
-                            content: e.target.value,
-                          })
-                        }
-                      />
-                      {errors.content && (
-                        <div className="invalid-feedback">{errors.content}</div>
-                      )}
-                    </div>
+                    <textarea
+                      className={`form-control ${
+                        errors.content ? "is-invalid" : ""
+                      }`}
+                      rows="3"
+                      placeholder="Write a comment..."
+                      value={newComment.content}
+                      onChange={(e) =>
+                        setNewComment({ ...newComment, content: e.target.value })
+                      }
+                    />
+                    {errors.content && (
+                      <div className="invalid-feedback">{errors.content}</div>
+                    )}
                     <button type="submit" className="btn btn-primary mt-3">
-                      Gửi Bình Luận
+                      Submit Comment
                     </button>
                   </form>
-                )}
-                {!isLoggedIn && (
-                  <div className="alert alert-warning" role="alert">
-                    Bạn phải <Link to="/login">đăng nhập</Link> để có thể bình
-                    luận.
+                ) : (
+                  <div className="alert alert-warning">
+                    You must <Link to="/login">log in</Link> to comment.
                   </div>
                 )}
               </div>
@@ -443,7 +391,7 @@ const DetailBlog = () => {
           </div>
 
           <div className="container mt-5">
-            <h3 className="text-center mb-4">Có thể bạn quan tâm</h3>
+            <h3 className="text-center mb-4">You May Also Like</h3>
             <div className="row">
               {relatedPosts.map((post) => (
                 <div className="col-lg-4 mb-4" key={post.id}>
@@ -452,11 +400,7 @@ const DetailBlog = () => {
                     style={{ cursor: "pointer" }}
                     onClick={() => handleBlogClick(post.slug)}
                   >
-                    <img
-                      className="card-img-top"
-                      src={post.poster}
-                      alt={post.title}
-                    />
+                    <img className="card-img-top" src={post.poster} alt={post.title} />
                     <div className="card-body">
                       <h5 className="card-title">{post.title}</h5>
                       <p className="card-text text-muted">{post.description}</p>
@@ -468,22 +412,22 @@ const DetailBlog = () => {
           </div>
         </div>
       ) : (
-        <p>Blog không tồn tại!</p>
+        <p>Blog not found!</p>
       )}
 
       <DialogEditComment
-        open={isEditDialogOpen} // Mở Dialog sửa khi isEditDialogOpen là true
+        open={isEditDialogOpen}
         content={editingContent}
-        onChange={(e) => setEditingContent(e.target.value)} // Cập nhật nội dung khi thay đổi
-        onClose={handleClose} // Đóng Dialog
-        onSave={handleEditComment} // Lưu bình luận đã chỉnh sửa
+        onChange={(e) => setEditingContent(e.target.value)}
+        onClose={handleClose}
+        onSave={handleEditComment}
       />
 
       <DialogConfirm
-        open={isDeleteDialogOpen} // Mở Dialog xóa khi isDeleteDialogOpen là true
-        onClose={handleClose} // Đóng Dialog xóa
-        onConfirm={handleDeleteComment} // Xác nhận xóa bình luận
-        message="Bạn có chắc chắn muốn xóa bình luận này?"
+        open={isDeleteDialogOpen}
+        onClose={handleClose}
+        onConfirm={handleDeleteComment}
+        message="Are you sure you want to delete this comment?"
       />
     </div>
   );
