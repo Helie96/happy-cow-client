@@ -46,19 +46,18 @@ function Home() {
           <div className="row align-items-center g-5">
             <div className="col-lg-6 text-center text-lg-start">
               <h1 className="display-6 text-white animated slideInLeft">
-                NHỮNG MÓN ĂN NGON SẴN SÀN PHỤC VỤ THỰC KHÁCH
+                DELICIOUS DISHES READY TO SERVICE OUR GUESTS
               </h1>
               <p className="text-white animated slideInLeft mb-4 pb-2">
-                Khám phá hành trình ẩm thực châu Á đầy màu sắc. Với menu phong
-                phú, từ những món ăn truyền thống đến những biến tấu mới lạ,
-                chúng tôi mang đến cho thực khách những trải nghiệm ẩm thực độc
-                đáo.
+                Explore a vibrant Asian culinary journey. With a diverse menu
+                ranging from traditional dishes to creative modern variations,
+                we bring diners unique and memorable dining experiences.
               </p>
               <Link
                 to="/booking"
                 className="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft"
               >
-                Đặt bàn ngay
+                Book A Table Now
               </Link>
             </div>
             <div className="col-lg-6 text-center text-lg-end overflow-hidden">
@@ -78,11 +77,11 @@ function Home() {
               <div className="service-item rounded pt-3">
                 <div className="p-4">
                   <i className="fa fa-3x fa-user-tie text-primary mb-4"></i>
-                  <h5>Đầu bếp nhiều năm kinh nghiêm</h5>
+                  <h5>Highly Experienced Chefs</h5>
                   <p>
-                    Đầu bếp của chúng tôi với{" "}
-                    <strong>hơn 5 năm kinh nghiệm</strong>, sẽ luôn mang đến cho
-                    quý khách những món ăn hảo hạng và đậm chất Việt Nam.
+                    Our chefs have{" "}
+                    <strong>over 5 years of experience</strong>, always bringing
+                    premium dishes with authentic Vietnamese flavors to our guests.
                   </p>
                 </div>
               </div>
@@ -94,11 +93,11 @@ function Home() {
               <div className="service-item rounded pt-3">
                 <div className="p-4">
                   <i className="fa fa-3x fa-utensils text-primary mb-4"></i>
-                  <h5>Nguyên liệu tươi ngon nhất</h5>
+                  <h5>Freshest Ingredients</h5>
                   <p>
-                    Mỗi món ăn tại nhà hàng đều được chế biến từ những{" "}
-                    <strong>nguyên liệu tươi ngon nhất</strong> , đảm bảo hương
-                    vị thơm ngon và chất lượng.
+                    Every dish is prepared using{" "}
+                    <strong>the freshest ingredients</strong> , ensuring
+                    exceptional flavor and quality.
                   </p>
                 </div>
               </div>
@@ -110,10 +109,10 @@ function Home() {
               <div className="service-item rounded pt-3">
                 <div className="p-4">
                   <i className="fa fa-3x fa-chair text-primary mb-4"></i>
-                  <h5>Đặt bàn dễ dàng, nhanh chóng</h5>
+                  <h5>Fast & Easy Table Booking</h5>
                   <p>
-                    Đặt bàn <strong>dễ dàng chỉ với vài cú click</strong>. Món
-                    ăn sẽ nhanh chóng được phục vụ khi khách hàng đến nơ
+                    Book A Table <strong>easily with just a few clicks</strong>. Your dishes
+                    will be served promptly upon arrival.
                   </p>
                 </div>
               </div>
@@ -125,11 +124,11 @@ function Home() {
               <div className="service-item rounded pt-3">
                 <div className="p-4">
                   <i className="fa fa-3x fa-headset text-primary mb-4"></i>
-                  <h5>Phục vụ tận tình, xuyên suốt 24/7</h5>
+                  <h5>Dedicated Service 24/7</h5>
                   <p>
-                    Chúng tôi luôn sẵn sàng phục vụ quý khách
-                    <strong> 24/7</strong>. Liên hệ ngay để được tư vấn dịch vụ
-                    nha hàng và đặt bàn.
+                    We are always ready to serve our guests
+                    <strong> 24/7</strong>. Contact us for consultation and table
+                    reservations.
                   </p>
                 </div>
               </div>
@@ -178,7 +177,7 @@ function Home() {
               <h5 className="section-title ff-secondary text-start text-primary fw-normal">
                 Giới thiệu
               </h5>
-              <h1 className="mb-4">CHÀO MỪNG ĐẾN VỚI</h1>
+              <h1 className="mb-4">WELCOME TO</h1>
               <h1 className="mb-4">
                 <img
                   src="../../Assets/Client/Images/huong-sen-logo.png"
@@ -190,15 +189,14 @@ function Home() {
                 </span>
               </h1>
               <p className="mb-4">
-                Nhà hàng Hương Sen - Hương vị ẩm thực Việt Nam đích thực
+                Happy Cow Restaurant – Authentic Vietnamese Culinary Flavors
               </p>
               <p className="mb-4">
-                Với hơn 5 năm kinh nghiệm trong lĩnh vực ẩm thực, Hương Sen tự
-                hào mang đến cho thực khách những món ăn ngon, độc đáo và chất
-                lượng. Đội ngũ đầu bếp tài năng của chúng tôi luôn không ngừng
-                sáng tạo để mang đến những trải nghiệm ẩm thực mới lạ. Không
-                gian nhà hàng ấm cúng, sang trọng, cùng với phong cách phục vụ
-                chuyên nghiệp sẽ khiến quý khách hài lòng.
+                With over 5 years of experience in the culinary industry, Happy 
+                Cow proudly delivers delicious, high-quality, and distinctive
+                dishes. Our talented chefs continuously innovate to bring fresh
+                dining experiences. The warm, elegant space and professional
+                service ensure complete customer satisfaction.
               </p>
               <div className="row g-4 mb-4">
                 <div className="col-sm-6">
@@ -210,8 +208,8 @@ function Home() {
                       {">"}5
                     </h1>
                     <div className="ps-4">
-                      <p className="mb-0">Năm</p>
-                      <h6 className="text-uppercase mb-0">Kinh Nghiệm</h6>
+                      <p className="mb-0">Years</p>
+                      <h6 className="text-uppercase mb-0">Experience</h6>
                     </div>
                   </div>
                 </div>
@@ -226,14 +224,14 @@ function Home() {
                     <div className="ps-4">
                       <p className="mb-0">Đầu Bếp</p>
                       <h6 className="text-uppercase mb-0">
-                        Nhiều Năm Kinh Nghiệm
+                        Highly Experienced
                       </h6>
                     </div>
                   </div>
                 </div>
               </div>
               <Link className="btn btn-primary py-3 px-5 mt-2" to="/about">
-                Xem thêm tại đây
+                View More
               </Link>
             </div>
           </div>
@@ -244,9 +242,9 @@ function Home() {
         <div className="container">
           <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h5 className="section-title ff-secondary text-center text-primary fw-normal">
-              Nhà Hàng Hương Sen
+              Happy Cow Restaurant
             </h5>
-            <h1 className="mb-5">Món ăn mới</h1>
+            <h1 className="mb-5">New Dishes</h1>
           </div>
           <div
             className="tab-class text-center wow fadeInUp"
