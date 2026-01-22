@@ -24,15 +24,18 @@ export default function Booking() {
       <div className="container-fluid p-0 py-5 bg-dark hero-header mb-5">
         <div className="container text-center my-5 pt-5 pb-4">
           <h1 className="display-3 text-white mb-3 animated slideInDown">
-            Đặt bàn online
+            Online Table Reservation
           </h1>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb justify-content-center text-uppercase">
               <li className="breadcrumb-item">
-                <Link to="/">Trang chủ</Link>
+                <Link to="/">Home</Link>
               </li>
-              <li className="breadcrumb-item text-white active" aria-current="page">
-                Đặt bàn
+              <li
+                className="breadcrumb-item text-white active"
+                aria-current="page"
+              >
+                Reservation
               </li>
             </ol>
           </nav>
@@ -45,19 +48,19 @@ export default function Booking() {
             <div className="progress-steps d-flex justify-content-between">
               <div className="step">
                 <span className="circle">1</span>
-                <p>Điền thông tin</p>
+                <p>Fill Information</p>
               </div>
               <div className="step">
                 <span className="circle">2</span>
-                <p>Chọn món</p>
+                <p>Select Dishes</p>
               </div>
               <div className="step">
                 <span className="circle">3</span>
-                <p>Thanh toán</p>
+                <p>Payment</p>
               </div>
               <div className="step">
                 <span className="circle active">4</span>
-                <p>Xác nhận</p>
+                <p>Confirmation</p>
               </div>
             </div>
           </div>
@@ -77,14 +80,18 @@ export default function Booking() {
                 alt="Success"
                 className="mb-4"
               />
-              <h1 className="text-success">CẢM ƠN ĐÃ SỬ DỤNG DỊCH VỤ!</h1>
+              <h1 className="text-success">
+                THANK YOU FOR USING OUR SERVICE!
+              </h1>
               <p className="fw-bold">
-                Bạn đã đặt bàn ở nhà hàng chúng tôi thành công. Chúng tôi sẽ
-                liên hệ để xác nhận lại trong thời gian sớm nhất.
+                Your table reservation at our restaurant has been successfully
+                completed. We will contact you shortly to confirm the details.
               </p>
               <p>
-                Nếu bạn có thắc mắc hay cần hỗ trợ. Vui lòng liên hệ
-                <span className="text-warning ms-2 fw-bold">078.546.8567</span>
+                If you have any questions or need assistance, please contact
+                <span className="text-warning ms-2 fw-bold">
+                  078.546.8567
+                </span>
               </p>
               <p>
                 <Button
@@ -102,13 +109,14 @@ export default function Booking() {
                     },
                   }}
                 >
-                  Xem lịch sử đặt bàn
+                  View Booking History
                 </Button>
               </p>
               {/* New Note Section */}
               <div className="alert alert-warning mt-4">
-                <strong>Lưu ý:</strong> Nếu quý khách đến trễ quá 30 phút, nhà hàng sẽ
-                huỷ bàn và không hoàn lại cọc.
+                <strong>Note:</strong> If guests arrive more than 30 minutes late,
+                the reservation will be canceled and the deposit will not be
+                refunded.
               </div>
             </div>
           </div>
