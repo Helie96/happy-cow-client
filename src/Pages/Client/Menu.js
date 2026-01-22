@@ -71,7 +71,7 @@ export default function Menu() {
       <div className="py-5 bg-dark hero-header mb-3">
         <div className="container text-center my-5 pt-5 pb-4">
           <h1 className="display-3 text-white mb-3 animated slideInDown">
-            Thực Đơn
+            Menu
           </h1>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb justify-content-center text-uppercase">
@@ -79,7 +79,7 @@ export default function Menu() {
                 <Link to="/">Trang chủ</Link>
               </li>
               <li className="breadcrumb-item text-white active" aria-current="page">
-                Thực Đơn
+                Menu
               </li>
             </ol>
           </nav>
@@ -137,7 +137,7 @@ export default function Menu() {
                 <div className="container">
                   <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 className="section-title ff-secondary text-center text-primary fw-normal">
-                      Nhà Hàng Hương Sen
+                      Happy Cow Restaurant
                     </h5>
                     <h1 className="mb-5">{productCategoryState.product_category.find(cat => cat.id === selectedCategory)?.name}</h1>
                   </div>
@@ -148,7 +148,7 @@ export default function Menu() {
                         <div className="row" style={{ rowGap: "20px" }}>
                           {currentProducts.length === 0 ? (
                             <div className="text-center" style={{ marginTop: '20px', fontSize: '1.2rem', color: '#333' }}>
-                              Đang cập nhật thêm món ăn...
+                              More dishes are being updated...
                             </div>
                           ) : (
                             currentProducts.map((product) => (
@@ -215,7 +215,7 @@ export default function Menu() {
                   <div className="container">
                     <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
                       <h5 className="section-title ff-secondary text-center text-primary fw-normal">
-                        Nhà Hàng Hương Sen
+                        Happy Cow Restaurant
                       </h5>
                       <h1 className="mb-5">{item.name}</h1>
                     </div>
