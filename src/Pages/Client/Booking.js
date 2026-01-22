@@ -80,12 +80,12 @@ export default function Booking() {
           >
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Thông báo</h5>
+                <h5 className="modal-title">Notification</h5>
               </div>
               <div className="modal-body">
                 <p>
-                  Bạn cần đăng nhập để tiếp tục. Bạn có muốn chuyển đến trang
-                  đăng nhập không?
+                  You need to log in to continue. Would you like to go to the
+                  login page?
                 </p>
               </div>
               <div className="modal-footer">
@@ -94,14 +94,14 @@ export default function Booking() {
                   className="btn btn-secondary"
                   onClick={handleCancel}
                 >
-                  Hủy
+                  Cancel
                 </button>
                 <button
                   type="button"
                   className="btn btn-primary"
                   onClick={handleRedirectToLogin}
                 >
-                  Đi đến đăng nhập
+                  Go to Login
                 </button>
               </div>
             </div>
@@ -112,18 +112,18 @@ export default function Booking() {
       <div className="container-fluid p-0 py-5 bg-dark hero-header mb-5">
         <div className="container text-center my-5 pt-5 pb-4">
           <h1 className="display-3 text-white mb-3 animated slideInDown">
-            Đặt bàn online
+            Online Reservation
           </h1>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb justify-content-center text-uppercase">
               <li className="breadcrumb-item">
-                <Link to="/">Trang chủ</Link>
+                <Link to="/">Home</Link>
               </li>
               <li
                 className="breadcrumb-item text-white active"
                 aria-current="page"
               >
-                Đặt bàn
+                Reservation
               </li>
             </ol>
           </nav>
@@ -136,19 +136,19 @@ export default function Booking() {
             <div className="progress-steps d-flex justify-content-between">
               <div className="step">
                 <span className="circle active">1</span>
-                <p>Điền thông tin</p>
+                <p>Customer Information</p>
               </div>
               <div className="step">
                 <span className="circle">2</span>
-                <p>Chọn món</p>
+                <p>Select Dishes</p>
               </div>
               <div className="step">
                 <span className="circle">3</span>
-                <p>Thanh toán</p>
+                <p>Payment</p>
               </div>
               <div className="step">
                 <span className="circle">4</span>
-                <p>Xác nhận</p>
+                <p>Confirmation</p>
               </div>
             </div>
           </div>
@@ -166,9 +166,9 @@ export default function Booking() {
           <div className="col-md-6 bg-dark d-flex align-items-center">
             <div className="p-5 wow fadeInUp" data-wow-delay="0.2s">
               <h5 className="section-title ff-secondary text-start text-primary fw-normal">
-                Đặt chỗ
+                Reservation
               </h5>
-              <h1 className="text-white mb-4">Điền thông tin khách hàng</h1>
+              <h1 className="text-white mb-4">Enter Customer Information</h1>
               <form onSubmit={handleSubmit(handleNext)}>
                 <div className="row g-3">
                   <div className="col-md-6">
@@ -179,10 +179,10 @@ export default function Booking() {
                         id="fullname"
                         placeholder="Your Name"
                         {...register("fullname", {
-                          required: "Họ và tên là bắt buộc",
+                          required: "Full name is required",
                         })}
                       />
-                      <label htmlFor="fullname">Họ và tên bạn</label>
+                      <label htmlFor="fullname">Full Name</label>
                       {errors.fullname && (
                         <p className="text-danger">{errors.fullname.message}</p>
                       )}
@@ -196,19 +196,20 @@ export default function Booking() {
                         id="email"
                         placeholder="Your Email"
                         {...register("email", {
-                          required: "Email là bắt buộc",
+                          required: "Email is required",
                           pattern: {
                             value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                            message: "Email không hợp lệ",
+                            message: "Invalid email address",
                           },
                         })}
                       />
-                      <label htmlFor="email">Email của bạn</label>
+                      <label htmlFor="email">Email</label>
                       {errors.email && (
                         <p className="text-danger">{errors.email.message}</p>
                       )}
                     </div>
                   </div>
+
                   <div className="col-md-6">
                     <div className="form-floating">
                       <input
@@ -217,55 +218,50 @@ export default function Booking() {
                           errors.reservation_date ? "is-invalid" : ""
                         }`}
                         id="reservation_date"
-                        placeholder="Date & Time"
                         {...register("reservation_date", {
-                          required: "Thời gian là bắt buộc",
+                          required: "Reservation time is required",
                           validate: (value) => {
                             const selectedDate = new Date(value);
                             const now = new Date();
                             const minTime = new Date(
                               now.getTime() + 2 * 60 * 60 * 1000
-                            ); // 2 giờ sau hiện tại
+                            );
                             const maxTime = new Date(
                               now.getTime() + 7 * 24 * 60 * 60 * 1000
-                            ); // 7 ngày sau hiện tại
+                            );
 
-                            // Kiểm tra nếu thời gian trong quá khứ
                             if (selectedDate < now) {
-                              return "Không thể chọn thời gian trong quá khứ";
+                              return "Cannot select a past time";
                             }
-
-                            // Kiểm tra nếu thời gian đặt bàn ít nhất 2 giờ sau
                             if (selectedDate < minTime) {
-                              return "Vui lòng đặt bàn trước ít nhất 2 giờ";
+                              return "Please book at least 2 hours in advance";
                             }
-
-                            // Kiểm tra nếu thời gian đặt bàn trong 7 ngày
                             if (selectedDate > maxTime) {
-                              return "Không thể đặt bàn quá 7 ngày kể từ hôm nay";
+                              return "Cannot book more than 7 days in advance";
                             }
 
-                            // Lấy giờ và phút
                             const selectedHours = selectedDate.getHours();
                             if (selectedHours < 9 || selectedHours > 20) {
-                              return "Chỉ được đặt bàn trong khung giờ từ 9h sáng đến 8h tối";
+                              return "Reservations are available from 9:00 AM to 8:00 PM";
                             }
 
-                            return true; // Nếu tất cả điều kiện đều hợp lệ
+                            return true;
                           },
                         })}
-                        step={300} // Bước thay đổi thời gian là 5 phút
-                        min={new Date(new Date().getTime() + 2 * 60 * 60 * 1000)
+                        step={300}
+                        min={new Date(
+                          new Date().getTime() + 2 * 60 * 60 * 1000
+                        )
                           .toISOString()
-                          .slice(0, 16)} // Thời gian tối thiểu là 2 giờ sau hiện tại
+                          .slice(0, 16)}
                         max={new Date(
                           new Date().getTime() + 7 * 24 * 60 * 60 * 1000
                         )
                           .toISOString()
-                          .slice(0, 16)} // Thời gian tối đa là 7 ngày sau hiện tại
+                          .slice(0, 16)}
                       />
                       <label htmlFor="reservation_date">
-                        Thời gian dùng bữa
+                        Dining Time
                       </label>
                       {errors.reservation_date && (
                         <p className="text-danger">
@@ -283,19 +279,19 @@ export default function Booking() {
                         id="party_size"
                         placeholder="Party Size"
                         {...register("party_size", {
-                          required: "Số người ăn là bắt buộc",
+                          required: "Number of guests is required",
                           min: {
                             value: 1,
-                            message: "Số người ăn tối thiểu 1 người",
+                            message: "Minimum 1 guest",
                           },
                           max: {
                             value: 8,
-                            message: "Số người ăn tối đa 8 người",
+                            message: "Maximum 8 guests",
                           },
                           valueAsNumber: true,
                         })}
                       />
-                      <label htmlFor="party_size">Số người ăn</label>
+                      <label htmlFor="party_size">Number of Guests</label>
                       {errors.party_size && (
                         <p className="text-danger">
                           {errors.party_size.message}
@@ -303,6 +299,7 @@ export default function Booking() {
                       )}
                     </div>
                   </div>
+
                   <div className="col-12">
                     <div className="form-floating">
                       <input
@@ -311,30 +308,31 @@ export default function Booking() {
                         id="tel"
                         placeholder="Your Phone"
                         {...register("tel", {
-                          required: "Số điện thoại là bắt buộc",
+                          required: "Phone number is required",
                           pattern: {
                             value:
                               /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-                            message: "Số điện thoại không đúng định dạng",
+                            message: "Invalid phone number format",
                           },
                         })}
                       />
-                      <label htmlFor="tel">Số điện thoại</label>
+                      <label htmlFor="tel">Phone Number</label>
                       {errors.tel && (
                         <p className="text-danger">{errors.tel.message}</p>
                       )}
                     </div>
                   </div>
+
                   <div className="col-12">
                     <div className="form-floating">
                       <textarea
                         className="form-control"
-                        placeholder="Special Request"
+                        placeholder="Special Requests"
                         id="note"
                         style={{ height: "100px" }}
                         {...register("note")}
                       ></textarea>
-                      <label htmlFor="note">Ghi chú thêm</label>
+                      <label htmlFor="note">Additional Notes</label>
                     </div>
                   </div>
 
@@ -344,7 +342,7 @@ export default function Booking() {
                       className="btn btn-primary py-2 px-5"
                       onClick={handleSubmit(handleNext)}
                     >
-                      Tiếp theo
+                      Next
                     </button>
                   </div>
                 </div>
