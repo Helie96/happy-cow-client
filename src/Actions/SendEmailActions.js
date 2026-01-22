@@ -33,7 +33,7 @@ export const sendEmail = (dishes, dishList, customerInfo, currentTotal, VAT10, d
             return response.data;
         } catch (error) {
             // Lấy thông báo lỗi chi tiết
-            const errorMsg = error.response?.data?.message || "Đã xảy ra lỗi khi gửi email";
+            const errorMsg = error.response?.data?.message || "An error occurred while sending the email";
             
             // Dispatch hành động failure
             dispatch(fetchSenFailure(errorMsg));
