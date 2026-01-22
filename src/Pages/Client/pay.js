@@ -127,13 +127,13 @@ export default function Pay() {
         setVoucherCode("");
         setOpenSuccessAlert(true);
       } else {
-        setErrMasege('Mã giảm giá không hợp lệ hoặt đã hết hạn');
+        setErrMasege('Invalid or expired discount code');
         setOpenDangerAlert(true);
       }
     } else {
       setDiscount(0);
       setSelectedPromotion("");
-      setErrMasege('Mã giảm giá không hợp lệ hoặt đã hết hạn');
+      setErrMasege('Invalid or expired discount code');
       setOpenDangerAlert(true);
     }
   };
@@ -212,13 +212,13 @@ export default function Pay() {
           }
         }
       } catch (error) {
-        setErrMasege('Hiện không có bàn trống vui lòng thử lại');
+        setErrMasege('Currently, there are no available tables. Please try again');
         setOpenDangerAlert(true)
       } finally {
         setShowConfirmDialog(false); // Đóng modal sau khi đặt bàn xong
       }
     } else if (paymentMethod === "VNPay") {
-      setErrMasege('Tính năng thanh toán VNPAY chưa hỗ trợ');
+      setErrMasege('VNPay payment is not supported yet');
       setOpenDangerAlert(true)
     }
   };
@@ -229,18 +229,18 @@ export default function Pay() {
       <div className="container-fluid p-0 py-5 bg-dark hero-header mb-5">
         <div className="container text-center my-5 pt-5 pb-4">
           <h1 className="display-3 text-white mb-3 animated slideInDown">
-            Đặt bàn online
+            Book A Table Online
           </h1>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb justify-content-center text-uppercase">
               <li className="breadcrumb-item">
-                <a href="/">Trang chủ</a>
+                <a href="/">Home</a>
               </li>
               <li
                 className="breadcrumb-item text-white active"
                 aria-current="page"
               >
-                Đặt bàn
+                Book A Table
               </li>
             </ol>
           </nav>
@@ -265,7 +265,7 @@ export default function Pay() {
                   className="bi bi-exclamation-triangle-fill text-warning me-2"
                   style={{ fontSize: "1.5rem" }}
                 ></i>
-                Xác nhận đặt bàn
+                Confirm your reservation
               </h5>
               <button
                 type="button"
@@ -275,8 +275,8 @@ export default function Pay() {
             </div>
             <div className="modal-body">
               <p>
-                <strong>Lưu ý:</strong> Nếu quý khách đến trễ quá 30 phút, nhà
-                hàng sẽ huỷ bàn và không hoàn lại cọc.
+                <strong>Lưu ý:</strong> If you arrive more than 30 minutes late, the restaurant
+                will cancel your reservation and will not refund your deposit.
               </p>
             </div>
             <div className="modal-footer">
@@ -285,14 +285,14 @@ export default function Pay() {
                 className="btn btn-secondary"
                 onClick={() => setShowConfirmDialog(false)}
               >
-                Hủy
+                Cancel
               </button>
               <button
                 type="button"
                 className="btn btn-primary"
                 onClick={handleCompleteBooking}
               >
-                Đồng ý
+                Yes
               </button>
             </div>
           </div>
@@ -310,7 +310,7 @@ export default function Pay() {
           <div className="col-12 col-md-6 mb-3">
             <div className="p-4 bg-white shadow-sm">
               <h2 className="text-warning fw-bold ff-secondary">
-                Thông tin khách hàng
+                Information guest
               </h2>
               <p className="mb-0 fw-bold">Họ tên: {customerInfo.fullname}</p>
               <p className="mb-0 fw-bold">Email: {customerInfo.email}</p>
@@ -322,17 +322,17 @@ export default function Pay() {
           <div className="col-12 col-md-6 mb-3">
             <div className="p-4 bg-white shadow-sm">
               <h2 className="text-warning fw-bold ff-secondary">
-                Thông tin đơn đặt bàn
+                Information reservation
               </h2>
               <div className="d-flex justify-content-between align-items-center mt-2">
                 <p className="mb-0 fw-bold">Mã đơn: {reservation_code}</p>
                 <p className="mb-0 fw-bold text-end">
-                  Thời gian dùng bữa:{" "}
+                  Mealtime:{" "}
                   {formatTime(customerInfo.reservation_date)}
                 </p>
               </div>
               <p className="mb-0 fw-bold">
-                Số người: {customerInfo.party_size} người
+                Guest: {customerInfo.party_size} person
               </p>
             </div>
           </div>
@@ -342,7 +342,7 @@ export default function Pay() {
         <div className="row justify-content-center">
           <div className="col-12 col-md-8 mb-3">
             <h5 className="text-warning fw-bold mb-3 mx-3 mx-md-0">
-              Đơn hàng ({Object.keys(selectedProducts).length} sản phẩm)
+              Order ({Object.keys(selectedProducts).length} product)
             </h5>
             <hr />
             <div
@@ -394,13 +394,13 @@ export default function Pay() {
           {/* Order Summary */}
           <div className="col-12 col-md-4">
             <div className="bg-white shadow-sm p-4">
-              <h5 className="text-warning fw-bold">Tóm tắt đơn hàng</h5>
+              <h5 className="text-warning fw-bold">Order Summary</h5>
               {/* Input for manual voucher code */}
               <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Nhập mã giảm giá"
+                  placeholder="Enter discount code"
                   aria-label="Voucher Code"
                   aria-describedby="apply-voucher"
                   value={voucherCode}
@@ -410,7 +410,7 @@ export default function Pay() {
                   className="btn btn-primary"
                   onClick={() => applyVoucher(voucherCode)}
                 >
-                  Áp dụng
+                  Apply
                 </button>
               </div>
               {/* Dropdown select for available promotions */}
@@ -424,7 +424,7 @@ export default function Pay() {
                     }
                     onChange={(e) => handlePromotionSelect(e.target.value)}
                   >
-                    <option value="">Chọn mã giảm giá</option>
+                    <option value="">Select discount code</option>
                     {validPromotions.map((promotion) => (
                       <option key={promotion.id} value={promotion.code_name}>
                         {promotion.code_name} ({promotion.discount}%)
@@ -432,38 +432,38 @@ export default function Pay() {
                     ))}
                   </select>
                 ) : (
-                  <p>Không có mã giảm gia hiện tại.</p>
+                  <p>No discount codes available at the moment.</p>
                 )}
               </div>
               {/* Order total */}
               <div className="d-flex justify-content-between align-items-center">
-                <span>Tạm tính:</span>
+                <span>Subtotal:</span>
                 <span>{formatPrice(total_amount)}</span>
               </div>
               {/* Discount */}
               <div className="d-flex justify-content-between align-items-center">
-                <span>Giảm giá:</span>
+                <span>Discount:</span>
                 <span>{formatPrice(total_amount * (discount / 100))}</span>
               </div>
               {/* Tax */}
               <div className="d-flex justify-content-between align-items-center">
-                <span>Thuế:</span>
+                <span>Tax:</span>
                 <span>{formatPrice(total_amount * 0.1)}</span>
               </div>
               <hr />
               <p className="fw-bold">
-                Tổng thanh toán:{" "}
+                Total Payment:{" "}
                 <span className="text-warning">{formatPrice(finalTotal)}</span>
               </p>
               <hr />
               {/* Payment Method */}
               <label className="d-flex justify-content-between fw-bold">
-                Phương thức thanh toán
+                Payment Method
               </label>
 
               <div>
-                <label>Cọc (30%) hóa đơn: {formatPrice(deposit)}</label>
-                <label>Còn lại (70%): {formatPrice(remaining)}</label>
+                <label>Deposit (30%) order: {formatPrice(deposit)}</label>
+                <label>Remaining (70%): {formatPrice(remaining)}</label>
               </div>
 
               <hr />
@@ -477,7 +477,7 @@ export default function Pay() {
                     checked={paymentMethod === "MOMO"}
                     onChange={() => setPaymentMethod("MOMO")}
                   />
-                  <label htmlFor="momo">ㅤThanh toán bằng MOMO</label>
+                  <label htmlFor="momo">ㅤPay with MOMO</label>
                 </div>
                 <div>
                   <input
@@ -488,7 +488,7 @@ export default function Pay() {
                     checked={paymentMethod === "VNPay"}
                     onChange={() => setPaymentMethod("VNPay")}
                   />
-                  <label htmlFor="vnpay"> ㅤThanh toán bằng VNPay</label>
+                  <label htmlFor="vnpay"> ㅤPay with VNPay</label>
                 </div>
               </div>
               <hr />
@@ -496,14 +496,14 @@ export default function Pay() {
               {/* Buttons for confirmation and going back */}
               <div className="d-flex justify-content-between mt-3">
                 <NavLink to="/order" className="w-30">
-                  <button className="btn btn-secondary w-100">Trở lại</button>
+                  <button className="btn btn-secondary w-100">Back</button>
                 </NavLink>
                 <button
                   className="btn btn-primary w-70"
                   onClick={handleCompleteBooking}
                   disabled={!paymentMethod}
                 >
-                  Xác nhận thanh toán
+                  Confirm Payment
                 </button>
               </div>
             </div>
@@ -513,7 +513,7 @@ export default function Pay() {
       <SuccessAlert
         open={openSuccessAlert}
         onClose={() => setOpenSuccessAlert(false)}
-        message="Voucher đã được sử dụng!"
+        message="Voucher has been applied successfully!"
       />
       <DangerAlert
         open={openDangerAlert}
