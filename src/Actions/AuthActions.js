@@ -34,7 +34,7 @@ export const showErrorAlert = (message) => ({
 });
 
 const getErrorMessage = (error) => {
-    return error.response?.data?.message || error.message || "Đã xảy ra lỗi. Vui lòng thử lại!";
+    return error.response?.data?.message || error.message || "An error occurred. Please try again!";
 };
 
 
@@ -61,7 +61,7 @@ export const fetchGoogleAuth = (userData) => {
             dispatch(fetchAuthSuccess(data));
             localStorage.setItem('user', JSON.stringify(data.user));
             localStorage.setItem('accessToken', data.accessToken);
-            dispatch(showSuccessAlert('Đăng nhập Google thành công!'));
+            dispatch(showSuccessAlert('Google login successful!'));
         } catch (error) {
             const errorMsg = getErrorMessage(error.response.data);
             dispatch(fetchAuthFailure(errorMsg));
@@ -80,7 +80,7 @@ export const fetchFacebookAuth = (userData) => {
             dispatch(fetchAuthSuccess(data));
             localStorage.setItem('user', JSON.stringify(data.user));
             localStorage.setItem('accessToken', data.accessToken);
-            dispatch(showSuccessAlert('Đăng nhập Facebook thành công!'));
+            dispatch(showSuccessAlert('Facebook login successfull!'));
         } catch (error) {
             const errorMsg = getErrorMessage(error.response.data);
             dispatch(fetchAuthFailure(errorMsg));
@@ -101,7 +101,7 @@ export const fetchLogin = (email, password) => {
             dispatch(fetchAuthSuccess(data));
             localStorage.setItem('user', JSON.stringify(data.user));
             localStorage.setItem('accessToken', data.accessToken);
-            dispatch(showSuccessAlert('Đăng nhập thành công!'));
+            dispatch(showSuccessAlert('Login successful!'));
         } catch (error) {
             const errorMsg = getErrorMessage(error.response.data);
             console.log("Check errorMsg:: ", errorMsg)
@@ -133,7 +133,7 @@ export const addNewCustomer = (customerData) => {
             const response = await http.post(`${API_ENDPOINT}${API_DATA.register}`, customerData);
             const data = response.data;
             dispatch(fetchAuthSuccess(data));
-            dispatch(showSuccessAlert('Đăng ký tài khoản thành công!'));
+            dispatch(showSuccessAlert('Account registration successful!'));
         } catch (error) {
             const errorMsg = getErrorMessage(error.response.data);
             dispatch(fetchAuthFailure(errorMsg));
@@ -149,7 +149,7 @@ export const forgotPassword = (email) => {
         try {
             const response = await http.post(`${API_ENDPOINT}${API_DATA.forgotPassword}`, { email });
             dispatch(fetchAuthSuccess(response.data));
-            dispatch(showSuccessAlert('Email đặt lại mật khẩu đã được gửi thành công!'));
+            dispatch(showSuccessAlert('Password reset email has been sent successfully!'));
         } catch (error) {
             const errorMsg = getErrorMessage(error.response.data);
             dispatch(fetchAuthFailure(errorMsg));
@@ -164,7 +164,7 @@ export const changePassword = (token, newPassword) => {
         try {
             const response = await http.post(`${API_ENDPOINT}${API_DATA.changePassword}`, { token, newPassword });
             dispatch(fetchAuthSuccess(response.data));
-            dispatch(showSuccessAlert('Đổi mật khẩu thành công!'));
+            dispatch(showSuccessAlert('Password changed successfully!'));
         } catch (error) {
             const errorMsg = getErrorMessage(error.response.data);
             dispatch(fetchAuthFailure(errorMsg));
