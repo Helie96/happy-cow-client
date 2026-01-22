@@ -44,7 +44,7 @@ export default function Login() {
                }
           } catch (err) {
                setLoading(false);
-               setServerError(err.message || 'Đăng nhập thất bại');
+               setServerError(err.message || 'Login failed');
           }
      };
 
@@ -56,12 +56,17 @@ export default function Login() {
                          <div className="col-12 col-lg-6">
                               {/* Logo */}
                               <div className="text-center mb-4">
-                                   <img src="../../../Assets/Client/Images/huong-sen-logo.png" alt="Lotus Logo" className="img-fluid" style={{ maxWidth: '150px' }} />
+                                   <img
+                                        src="../../../Assets/Client/Images/huong-sen-logo.png"
+                                        alt="Lotus Logo"
+                                        className="img-fluid"
+                                        style={{ maxWidth: '150px' }}
+                                   />
                               </div>
 
                               {/* Social Login Options */}
                               <div className="text-center mb-4">
-                                   <h5 className="mb-3">Đăng nhập với</h5>
+                                   <h5 className="mb-3">Sign in with</h5>
                                    <div className="d-flex justify-content-center gap-3">
                                         <button className="btn btn-light shadow-sm">
                                              <GoogleAuth />
@@ -75,7 +80,7 @@ export default function Login() {
                               {/* Divider */}
                               <div className="d-flex align-items-center my-4">
                                    <hr className="flex-grow-1" />
-                                   <span className="mx-3 text-muted">hoặc</span>
+                                   <span className="mx-3 text-muted">or</span>
                                    <hr className="flex-grow-1" />
                               </div>
 
@@ -83,29 +88,34 @@ export default function Login() {
                               <div className="p-4 shadow-sm rounded">
                                    <form onSubmit={handleSubmit(onSubmit)}>
                                         <div className="mb-3">
-                                             <label className="form-label">Nhập số điện thoại</label>
+                                             <label className="form-label">Enter phone number</label>
                                              <input
                                                   type="text"
                                                   className="form-control"
-                                                  placeholder="Số điện thoại"
+                                                  placeholder="Phone number"
                                                   // {...register('phone')}
                                                   {...register('email')}
                                              />
                                         </div>
 
                                         <div className="mb-3">
-                                             <label className="form-label">Nhập mật khẩu</label>
-                                             <input type="password" className="form-control" placeholder="Mật khẩu" {...register('password')} />
+                                             <label className="form-label">Enter password</label>
+                                             <input
+                                                  type="password"
+                                                  className="form-control"
+                                                  placeholder="Password"
+                                                  {...register('password')}
+                                             />
                                         </div>
 
                                         <div className="d-flex justify-content-between align-items-center mb-3 float-end">
                                              <a href="/forgot-password" className="text-decoration-none text-muted">
-                                                  Quên mật khẩu?
+                                                  Forgot password?
                                              </a>
                                         </div>
 
                                         <button type="submit" className="btn btn-primary w-100">
-                                             Đăng nhập
+                                             Login
                                         </button>
                                    </form>
                               </div>
@@ -113,13 +123,13 @@ export default function Login() {
                               {/* Register Option */}
                               <div className="text-center mt-3">
                                    <p className="mb-1">
-                                        Bạn chưa có tài khoản?{' '}
+                                        Don’t have an account?{' '}
                                         <a href="/register" className="text-primary text-decoration-none">
-                                             Đăng ký ngay
+                                             Register now
                                         </a>
                                    </p>
                                    <a href="/policy" className="text-secondary text-decoration-underline">
-                                        Xem chính sách của nhà hàng
+                                        View restaurant policy
                                    </a>
                               </div>
                          </div>
