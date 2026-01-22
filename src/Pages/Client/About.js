@@ -9,13 +9,13 @@ export default function About() {
 
             <div className="container-fluid p-0 py-5 bg-dark hero-header mb-5">
                 <div className="container text-center my-5 pt-5 pb-4">
-                    <h1 className="display-3 text-white mb-3 animated slideInDown">Về Chúng Tôi</h1>
+                    <h1 className="display-3 text-white mb-3 animated slideInDown">About Us</h1>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb justify-content-center text-uppercase">
                             <li className="breadcrumb-item">
-                                <Link to="/">Trang chủ</Link>
+                                <Link to="/">Home</Link>
                             </li>
-                            <li className="breadcrumb-item text-white active" aria-current="page">Về Chúng Tôi</li>
+                            <li className="breadcrumb-item text-white active" aria-current="page">About Us</li>
                         </ol>
                     </nav>
                 </div>
@@ -27,57 +27,94 @@ export default function About() {
                         <div className="col-lg-6">
                             <div className="row g-3">
                                 <div className="col-6 text-start">
-                                    <img className="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src={ImageGallery.about1} />
+                                    <img
+                                        className="img-fluid rounded w-100 wow zoomIn"
+                                        data-wow-delay="0.1s"
+                                        src={ImageGallery.about1}
+                                    />
                                 </div>
                                 <div className="col-6 text-start">
-                                    <img className="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src={ImageGallery.about2}
-                                        style={{ marginBottom: '25%' }} />
+                                    <img
+                                        className="img-fluid rounded w-75 wow zoomIn"
+                                        data-wow-delay="0.3s"
+                                        src={ImageGallery.about2}
+                                        style={{ marginBottom: '25%' }}
+                                    />
                                 </div>
                                 <div className="col-6 text-end">
-                                    <img className="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src={ImageGallery.about3} />
+                                    <img
+                                        className="img-fluid rounded w-75 wow zoomIn"
+                                        data-wow-delay="0.5s"
+                                        src={ImageGallery.about3}
+                                    />
                                 </div>
                                 <div className="col-6 text-end">
-                                    <img className="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src={ImageGallery.about4} />
+                                    <img
+                                        className="img-fluid rounded w-100 wow zoomIn"
+                                        data-wow-delay="0.7s"
+                                        src={ImageGallery.about4}
+                                    />
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-6">
-                            <h5 className="section-title ff-secondary text-start text-primary fw-normal">Về Chúng Tôi</h5>
-                            <h1 className="mb-4">Chào Mừng Đến Với <i className="fa fa-utensils text-primary me-2"></i>Nhà Hàng</h1>
-                            <p className="mb-4">Chúng tôi tự hào mang đến cho bạn trải nghiệm ẩm thực độc đáo và tuyệt vời. Với nhiều năm kinh nghiệm và đội ngũ đầu bếp tài năng, chúng tôi cam kết mang lại những món ăn ngon miệng và dịch vụ chuyên nghiệp nhất.</p>
-                            <p className="mb-4">Không chỉ là một nhà hàng, chúng tôi còn là nơi bạn có thể thưởng thức những giây phút thư giãn, tận hưởng không gian ấm cúng và phong cách phục vụ tận tâm. Chúng tôi luôn nỗ lực không ngừng để mang đến những điều tốt nhất cho khách hàng của mình.</p>
+                            <h5 className="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
+                            <h1 className="mb-4">
+                                Welcome To <i className="fa fa-utensils text-primary me-2"></i>Restaurant
+                            </h1>
+                            <p className="mb-4">
+                                We are proud to bring you a unique and wonderful culinary experience.
+                                With many years of experience and a team of talented chefs, we are committed
+                                to delivering delicious dishes and the most professional service.
+                            </p>
+                            <p className="mb-4">
+                                More than just a restaurant, we are a place where you can relax,
+                                enjoy a cozy atmosphere, and experience dedicated service.
+                                We constantly strive to bring the best to our customers.
+                            </p>
                             <div className="row g-4 mb-4">
                                 <div className="col-sm-6">
                                     <div className="d-flex align-items-center border-start border-5 border-primary px-3">
-                                        <h1 className="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">15</h1>
+                                        <h1
+                                            className="flex-shrink-0 display-5 text-primary mb-0"
+                                            data-toggle="counter-up"
+                                        >
+                                            15
+                                        </h1>
                                         <div className="ps-4">
-                                            <p className="mb-0">Năm</p>
-                                            <h6 className="text-uppercase mb-0">Kinh Nghiệm</h6>
+                                            <p className="mb-0">Years</p>
+                                            <h6 className="text-uppercase mb-0">Experience</h6>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="d-flex align-items-center border-start border-5 border-primary px-3">
-                                        <h1 className="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">50</h1>
+                                        <h1
+                                            className="flex-shrink-0 display-5 text-primary mb-0"
+                                            data-toggle="counter-up"
+                                        >
+                                            50
+                                        </h1>
                                         <div className="ps-4">
-                                            <p className="mb-0">Đầu Bếp</p>
-                                            <h6 className="text-uppercase mb-0">Hàng Đầu</h6>
+                                            <p className="mb-0">Chefs</p>
+                                            <h6 className="text-uppercase mb-0">Top Level</h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <a className="btn btn-primary py-3 px-5 mt-2" href="">Xem Thêm</a>
+                            <a className="btn btn-primary py-3 px-5 mt-2" href="">
+                                Read More
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-
             <div className="container-xxl pt-5 pb-3">
                 <div className="container">
                     <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h5 className="section-title ff-secondary text-center text-primary fw-normal">Thành Viên</h5>
-                        <h1 className="mb-5">Đội Ngũ Đầu Bếp</h1>
+                        <h5 className="section-title ff-secondary text-center text-primary fw-normal">Team Members</h5>
+                        <h1 className="mb-5">Our Chefs</h1>
                     </div>
                     <div className="row g-4">
                         <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -85,12 +122,18 @@ export default function About() {
                                 <div className="rounded-circle overflow-hidden m-4">
                                     <img className="img-fluid" src={ImageGallery.team1} alt="" />
                                 </div>
-                                <h5 className="mb-0">Nguyễn Văn A</h5>
-                                <small>Đầu Bếp Trưởng</small>
+                                <h5 className="mb-0">Nguyen Van A</h5>
+                                <small>Head Chef</small>
                                 <div className="d-flex justify-content-center mt-3">
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-twitter"></i>
+                                    </a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-instagram"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -99,12 +142,18 @@ export default function About() {
                                 <div className="rounded-circle overflow-hidden m-4">
                                     <img className="img-fluid" src={ImageGallery.team2} alt="" />
                                 </div>
-                                <h5 className="mb-0">Trần Thị B</h5>
-                                <small>Đầu Bếp Chính</small>
+                                <h5 className="mb-0">Tran Thi B</h5>
+                                <small>Main Chef</small>
                                 <div className="d-flex justify-content-center mt-3">
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-twitter"></i>
+                                    </a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-instagram"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -113,12 +162,18 @@ export default function About() {
                                 <div className="rounded-circle overflow-hidden m-4">
                                     <img className="img-fluid" src={ImageGallery.team3} alt="" />
                                 </div>
-                                <h5 className="mb-0">Phạm Văn C</h5>
-                                <small>Đầu Bếp</small>
+                                <h5 className="mb-0">Pham Van C</h5>
+                                <small>Chef</small>
                                 <div className="d-flex justify-content-center mt-3">
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-twitter"></i>
+                                    </a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-instagram"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -127,12 +182,18 @@ export default function About() {
                                 <div className="rounded-circle overflow-hidden m-4">
                                     <img className="img-fluid" src={ImageGallery.team4} alt="" />
                                 </div>
-                                <h5 className="mb-0">Lê Thị D</h5>
-                                <small>Đầu Bếp Phụ</small>
+                                <h5 className="mb-0">Le Thi D</h5>
+                                <small>Assistant Chef</small>
                                 <div className="d-flex justify-content-center mt-3">
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                    <a className="btn btn-square btn-primary mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-twitter"></i>
+                                    </a>
+                                    <a className="btn btn-square btn-primary mx-1" href="">
+                                        <i className="fab fa-instagram"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
