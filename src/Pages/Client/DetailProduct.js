@@ -71,21 +71,21 @@ const DetailProduct = () => {
       <div className="container-fluid py-5 bg-dark hero-header mb-5">
         <div className="container text-center my-5 pt-5 pb-4">
           <h1 className="display-3 text-white mb-3 animated slideInDown">
-            Chi Tiết Sản Phẩm
+            Product Details
           </h1>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb justify-content-center text-uppercase">
               <li className="breadcrumb-item">
-                <a href="/">Trang chủ</a>
+                <a href="/">Home</a>
               </li>
               <li className="breadcrumb-item">
-                <a href="/menu">Thực đơn</a>
+                <a href="/menu">Menu</a>
               </li>
               <li
                 className="breadcrumb-item text-white active"
                 aria-current="page"
               >
-                Chi Tiết Sản Phẩm
+                Product Details
               </li>
             </ol>
           </nav>
@@ -122,7 +122,7 @@ const DetailProduct = () => {
                         {formatPrice(productDetailState.productDetail?.price)}
                       </p>
                     )}
-                    <a href="/booking"><button className="btn-book-table">Đặt bàn ngay</button>
+                    <a href="/booking"><button className="btn-book-table">Book A Table Now</button>
 </a>
                   </div>
                 </div>
@@ -139,7 +139,7 @@ const DetailProduct = () => {
                         aria-controls="nav-about"
                         aria-selected="true"
                       >
-                        Mô tả
+                        Description
                       </button>
                     </div>
                   </nav>
@@ -159,7 +159,7 @@ const DetailProduct = () => {
             <div className="col-lg-4 col-xl-3">
               <div className="row g-4">
                 <div className="col-lg-12">
-                  <h4 className="mb-4">Sản phẩm nổi bật</h4>
+                  <h4 className="mb-4">Featured Products</h4>
                   {randomFeaturedProducts.map((product) => (
                     <div
                       className="d-flex align-items-center justify-content-start mb-4"
@@ -194,14 +194,14 @@ const DetailProduct = () => {
                       href="/menu"
                       className="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100"
                     >
-                      Xem thêm
+                      View More
                     </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <h1 className="fw-bold mb-4">Sản phẩm liên quan</h1>
+          <h1 className="fw-bold mb-4">Related Products</h1>
           <div className="related-products">
             {relatedProducts.map((product) => (
               <div
