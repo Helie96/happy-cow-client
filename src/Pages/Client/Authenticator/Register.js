@@ -23,7 +23,6 @@ export default function Register() {
     const [avatar, setAvatar] = useState("");
     const [loading, setLoading] = useState(false);
 
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -50,7 +49,7 @@ export default function Register() {
             if (user) {
                 setError("email", {
                     type: "manual",
-                    message: "Email đã tồn tại trên hệ thống",
+                    message: "Email already exists in the system",
                 });
                 return false;
             }
@@ -60,6 +59,7 @@ export default function Register() {
             return false;
         }
     };
+
     // *Hàm sử lý chọn địa chỉ
     const handleAddressChange = (addressData) => {
         setValue("address", addressData.fullAddress);
@@ -84,7 +84,7 @@ export default function Register() {
             await dispatch(addNewCustomer(customerData));
             navigate("/login"); // Điều hướng đến trang đăng nhập ngay sau khi đăng ký thành công
         } catch (error) {
-            console.error("Đăng ký thất bại:", error.message);
+            console.error("Registration failed:", error.message);
         } finally {
             setLoading(false); // Đặt loading về false sau khi hoàn tất
         }
@@ -109,7 +109,7 @@ export default function Register() {
                         {/* Social Login Options */}
                         <div className="text-center mb-4">
                             <h2>
-                                Đăng ký tài khoản thành viên
+                                Member Registration
                             </h2>
                         </div>
 
@@ -122,7 +122,7 @@ export default function Register() {
                                             <div className="col-md-6">
                                                 <div className="form-group mb-3">
                                                     <label htmlFor="fullname" className="form-label">
-                                                        Họ và Tên
+                                                        Full Name
                                                     </label>
                                                     <div className="input-group">
                                                         <span className="input-group-text bg-white">
@@ -132,9 +132,9 @@ export default function Register() {
                                                             type="text"
                                                             className={`form-control ${errors.fullname ? 'is-invalid' : ''}`}
                                                             id="fullname"
-                                                            placeholder="Nhập họ và tên"
+                                                            placeholder="Enter full name"
                                                             {...register("fullname", {
-                                                                required: "Họ và tên là bắt buộc",
+                                                                required: "Full name is required",
                                                             })}
                                                         />
                                                     </div>
@@ -145,6 +145,7 @@ export default function Register() {
                                                     )}
                                                 </div>
                                             </div>
+
                                             <div className="col-md-6">
                                                 <div className="form-group mb-3">
                                                     <label htmlFor="email" className="form-label">
@@ -158,12 +159,12 @@ export default function Register() {
                                                             type="email"
                                                             className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                                                             id="email"
-                                                            placeholder="Nhập Email"
+                                                            placeholder="Enter email"
                                                             {...register("email", {
-                                                                required: "Email là bắt buộc",
+                                                                required: "Email is required",
                                                                 pattern: {
                                                                     value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                                                                    message: "Email không hợp lệ",
+                                                                    message: "Invalid email address",
                                                                 },
                                                             })}
                                                         />
@@ -179,7 +180,7 @@ export default function Register() {
 
                                         <div className="form-group mb-3">
                                             <label htmlFor="avatar" className="form-label">
-                                                Ảnh đại diện
+                                                Avatar
                                             </label>
                                             <div className="input-group">
                                                 <ImageUploadComponent
@@ -193,7 +194,7 @@ export default function Register() {
                                             <div className="col-md-6">
                                                 <div className="form-group mb-3">
                                                     <label htmlFor="tel" className="form-label">
-                                                        Số điện thoại
+                                                        Phone Number
                                                     </label>
                                                     <div className="input-group">
                                                         <span className="input-group-text bg-white">
@@ -203,12 +204,12 @@ export default function Register() {
                                                             type="tel"
                                                             className={`form-control ${errors.tel ? 'is-invalid' : ''}`}
                                                             id="tel"
-                                                            placeholder="Nhập số điện thoại"
+                                                            placeholder="Enter phone number"
                                                             {...register("tel", {
-                                                                required: "Số điện thoại là bắt buộc",
+                                                                required: "Phone number is required",
                                                                 pattern: {
                                                                     value: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-                                                                    message: "Số điện thoại không không đúng định dạng",
+                                                                    message: "Invalid phone number format",
                                                                 },
                                                             })}
                                                         />
@@ -220,7 +221,7 @@ export default function Register() {
 
                                                 <div className="form-group mb-3">
                                                     <label htmlFor="password" className="form-label">
-                                                        Mật khẩu
+                                                        Password
                                                     </label>
                                                     <div className="input-group">
                                                         <span className="input-group-text bg-white">
@@ -230,16 +231,16 @@ export default function Register() {
                                                             type={passwordVisible ? "text" : "password"}
                                                             className={`form-control ${errors.password ? 'is-invalid' : ''}`}
                                                             id="password"
-                                                            placeholder="Nhập mật khẩu mới"
+                                                            placeholder="Enter new password"
                                                             {...register("password", {
-                                                                required: "Mật khẩu là bắt buộc",
+                                                                required: "Password is required",
                                                                 minLength: {
                                                                     value: 8,
-                                                                    message: "Mật khẩu phải có ít nhất 8 ký tự",
+                                                                    message: "Password must be at least 8 characters",
                                                                 },
                                                                 pattern: {
                                                                     value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                                                                    message: "Mật khẩu phải bao gồm ít nhất chữ in hoa, số và ký tự đặc biệt",
+                                                                    message: "Password must include at least one uppercase letter, one number, and one special character",
                                                                 },
                                                             })}
                                                         />
@@ -263,7 +264,7 @@ export default function Register() {
 
                                                 <div className="form-group mb-3">
                                                     <label htmlFor="confirm-password" className="form-label">
-                                                        Xác nhận mật khẩu
+                                                        Confirm Password
                                                     </label>
                                                     <div className="input-group">
                                                         <span className="input-group-text bg-white">
@@ -273,11 +274,11 @@ export default function Register() {
                                                             type={confirmPasswordVisible ? "text" : "password"}
                                                             className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
                                                             id="confirm-password"
-                                                            placeholder="Nhập mật khẩu xác nhận"
+                                                            placeholder="Enter confirmation password"
                                                             {...register("confirmPassword", {
-                                                                required: "Mật khẩu xác nhận là bắt buộc",
+                                                                required: "Password confirmation is required",
                                                                 validate: (value) =>
-                                                                    value === password || "Mật khẩu xác nhận không khớp",
+                                                                    value === password || "Confirmation password does not match",
                                                             })}
                                                         />
                                                         <span
@@ -298,10 +299,11 @@ export default function Register() {
                                                     )}
                                                 </div>
                                             </div>
+
                                             <div className="col-md-6">
                                                 <div className="form-group mb-3">
                                                     <label htmlFor="address" className="form-label">
-                                                        Địa chỉ
+                                                        Address
                                                     </label>
                                                     <AddressSelector onChange={handleAddressChange} />
                                                 </div>
@@ -311,12 +313,12 @@ export default function Register() {
                                                         type="text"
                                                         className={`form-control ${errors.address ? 'is-invalid' : ''}`}
                                                         readOnly
-                                                        placeholder="Địa chỉ chi tiết xem ở đây..."
+                                                        placeholder="Detailed address will appear here..."
                                                         {...register("address", {
-                                                            required: "Địa chỉ là bắt buộc",
+                                                            required: "Address is required",
                                                             validate: (value) =>
                                                                 value.split(",").filter((part) => part.trim()).length >= 4 ||
-                                                                "Vui lòng điền đầy đủ thông tin địa chỉ",
+                                                                "Please provide full address information",
                                                         })}
                                                     />
                                                     {errors.address && (
@@ -330,16 +332,16 @@ export default function Register() {
 
                                         <div className="d-grid gap-2">
                                             <button type="submit" className="btn btn-warning btn-lg text-white">
-                                                Đăng ký
+                                                Register
                                             </button>
                                         </div>
 
                                         <div className="text-center mt-4">
                                             <Link to="/login" className="link-primary me-3">
-                                                <i className="fa-solid fa-arrow-left ms-2"></i> Trở lại
+                                                <i className="fa-solid fa-arrow-left ms-2"></i> Back
                                             </Link>
                                             <Link to="/Login" className="link-primary">
-                                                Bạn đã có tài khoản?
+                                                Already have an account?
                                                 <i
                                                     className="fa fa-long-arrow-right ms-2"
                                                     aria-hidden="true"
