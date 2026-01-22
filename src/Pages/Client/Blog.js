@@ -55,15 +55,15 @@ export default function Blog() {
       <div className="container-fluid p-0 py-5 bg-dark hero-header mb-5">
         <div className="text-center my-5 pt-5 pb-4">
           <h1 className="display-3 text-white mb-3 animated slideInDown">
-            Tin tức và mẹo hay
+            News and Tips
           </h1>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb justify-content-center text-uppercase">
               <li className="breadcrumb-item">
-                <Link to="/">Trang chủ</Link>
+                <Link to="/">Home</Link>
               </li>
               <li className="breadcrumb-item text-white active" aria-current="page">
-                Tin tức & mẹo hay
+                News & Tips
               </li>
             </ol>
           </nav>
@@ -118,7 +118,7 @@ export default function Blog() {
               {/* Nếu không tìm thấy bài viết */}
               {!blogState.loading && blogState.allBlog?.length === 0 && (
                 <div className="col-12">
-                  <div className="alert alert-info">Không tìm thấy bài viết nào.</div>
+                  <div className="alert alert-info">No articles found.</div>
                 </div>
               )}
             </div>
@@ -135,7 +135,7 @@ export default function Blog() {
           {/* Sidebar */}
           <div className="col-md-3">
             <div className="blog-more">
-              <h3 className="mb-4">Có thể bạn quan tâm</h3>
+              <h3 className="mb-4">You May Be Interested In</h3>
               {getRandomBlogs().length > 0 &&
                 getRandomBlogs().map((blog) => (
                   <div className="list-group mt-3" key={blog.id} onClick={() => handleBlogClick(blog.slug)} style={{ cursor: "pointer" }}>
