@@ -40,7 +40,7 @@ export default function ForgotPassword() {
                         <div className="shadow-sm rounded">
                             <div className="card-body p-4">
                                 <form onSubmit={handleSubmit(onSubmit)}>
-                                    <h2 className="text-center mb-4">Quên mật khẩu</h2>
+                                    <h2 className="text-center mb-4">Forgot Password</h2>
 
                                     <div className="form-group mb-3">
                                         <label htmlFor="email" className="form-label">Email</label>
@@ -52,12 +52,12 @@ export default function ForgotPassword() {
                                                 type="email"
                                                 className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                                                 id="email"
-                                                placeholder="Nhập Email"
+                                                placeholder="Enter Email"
                                                 {...register('email', {
-                                                    required: 'Email là bắt buộc',
+                                                    required: 'Email is required',
                                                     pattern: {
                                                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                                        message: 'Email không hợp lệ'
+                                                        message: 'Invalid email address'
                                                     }
                                                 })}
                                             />
@@ -67,7 +67,7 @@ export default function ForgotPassword() {
 
                                     <div className="d-grid gap-2">
                                         <button type="submit" className="btn btn-warning btn-lg text-white">
-                                            Gửi yêu cầu
+                                            Submit Request
                                         </button>
                                     </div>
 
