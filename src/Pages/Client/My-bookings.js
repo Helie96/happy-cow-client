@@ -210,25 +210,25 @@ export default function MyBooking() {
   };
 
   const statusMapping = {
-    1: { text: 'Chờ thanh toán cọc', class: 'badge bg-warning' },    
-    2: { text: 'Hết hạn thanh toán cọc', class: 'badge bg-info' },
-    3: { text: 'Đã thanh toán cọc', class: 'badge bg-primary' },     
-    0: { text: 'Hủy đơn', class: 'badge bg-danger' },             
-    4: { text: 'Chờ thanh toán toàn bộ đơn', class: 'badge bg-success' },
-    5: { text: 'Hoàn thành đơn', class: 'badge bg-secondary' }       
+    1: { text: 'Pending deposit payment', class: 'badge bg-warning' },    
+    2: { text: 'Deposit payment expired', class: 'badge bg-info' },
+    3: { text: 'Deposit paid', class: 'badge bg-primary' },     
+    0: { text: 'Order cancelled', class: 'badge bg-danger' },             
+    4: { text: 'Pending full payment', class: 'badge bg-success' },
+    5: { text: 'Order completed', class: 'badge bg-secondary' }       
   };
 
   const monney = (status, total_amount, deposit) => {
     if (status == 1 || status == 2) {
-      return "<strong>Số tiền thanh toán:</strong> " + formatCurrency (deposit);
+      return "<strong>Amount to pay:</strong> " + formatCurrency (deposit);
     } else if (status == 3 || status == 4 || status == 0) {
       if (total_amount >= deposit) {
-        return "<strong>Số tiền còn lại:</strong> " + formatCurrency (total_amount - deposit);
+        return "<strong>Remaining amount:</strong> " + formatCurrency (total_amount - deposit);
       } else {
-        return "<strong>Nhà hàng thối lại:</strong> " + formatCurrency (deposit - total_amount);
+        return "<strong>Amount to be refunded by restaurant:</strong> " + formatCurrency (deposit - total_amount);
       }
     } else {
-      return "<strong>Số tiền còn lại:</strong> " + formatCurrency (0);
+      return "<strong>Remaining amount:</strong> " + formatCurrency (0);
     }
   }
 
@@ -238,15 +238,15 @@ export default function MyBooking() {
       <div className="py-5 bg-dark hero-header mb-3">
         <div className="container text-center my-5 pt-5 pb-4">
           <h1 className="display-3 text-white mb-3 animated slideInDown">
-              Lịch sử đặt bàn
+              Reservation History
           </h1>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb justify-content-center text-uppercase">
             <li className="breadcrumb-item">
-                <Link to="/">Trang chủ</Link>
+                <Link to="/">Home</Link>
             </li>
             <li className="breadcrumb-item text-white active" aria-current="page">
-                Lịch sử
+                History
             </li>
             </ol>
           </nav>
@@ -259,23 +259,23 @@ export default function MyBooking() {
           <div className="card-body">
             <div className="row g-3">  
               <div className="col-md-3">
-                <input type="text" className="form-control" placeholder="Tìm theo tên" value={nameSearch} onChange={handleNameSearch} />
+                <input type="text" className="form-control" placeholder="Search by name" value={nameSearch} onChange={handleNameSearch} />
               </div>               
               <div className="col-md-3">
-                <input type="text" className="form-control" placeholder="Tìm theo email" value={emailSearch} onChange={handleEmailSearch} />
+                <input type="text" className="form-control" placeholder="Search by email" value={emailSearch} onChange={handleEmailSearch} />
               </div>
               <div className="col-md-3">
-                <input type="text" className="form-control" placeholder="Tìm theo số điện thoại" value={phoneSearch} onChange={handlePhoneSearch} />
+                <input type="text" className="form-control" placeholder="Search by phone number" value={phoneSearch} onChange={handlePhoneSearch} />
               </div>
               <div className="col-md-3">
                 <select className="form-control mr-2" value={statusSearch} onChange={handleStatusSearch}>
-                  <option value="">Trạng thái</option>
-                  <option value="0">Đã hủy</option>
-                  <option value="1">Chờ thanh toán cọc</option>
-                  <option value="2">Hết hạn thanh toán cọc</option>
-                  <option value="3">Đã thanh toán cọc</option>
-                  <option value="4">Chờ thanh toán toàn bộ đơn</option>
-                  <option value="5">Hoàn thành đơn</option>
+                  <option value="">Status</option>
+                  <option value="0">Cancelled</option>
+                  <option value="1">Pending deposit payment</option>
+                  <option value="2">Deposit payment expired</option>
+                  <option value="3">Deposit paid</option>
+                  <option value="4">Pending full payment</option>
+                  <option value="5">Order completed</option>
                 </select>
               </div>
             </div>
@@ -289,14 +289,14 @@ export default function MyBooking() {
           <div><SpinnerSink/></div>
         )}
         {!getUserIdFromToken() ? (
-          <div className="text-center">Bạn chưa đăng nhập!</div>
+          <div className="text-center">You are not logged in!</div>
           ) : (
           <>
             {!reservationState.loading && reservationState.reservation.length === 0 && (
-              <div className='text-center'>Không tìm thấy danh sách nào!</div>
+              <div className='text-center'>No records found!</div>
             )}
             {reservationState.reservation && reservationState.reservation.map((booking, index) => {
-              const statusInfo = statusMapping[booking.status] || { text: 'Không xác định', class: 'badge-secondary' };
+              const statusInfo = statusMapping[booking.status] || { text: 'Unknown', class: 'badge-secondary' };
               return (
                 <div className="card mb-3 shadow-sm" key={booking.id}>
                   <div className="card-header d-flex justify-content-between align-items-center">
@@ -315,23 +315,23 @@ export default function MyBooking() {
                             <strong>Email:</strong> {booking.email}
                           </p>
                           <p className="mb-2">
-                            <strong>Mã hóa đơn:</strong> {booking.reservation_code ? booking.reservation_code : 'Chưa rõ'}
+                            <strong>Invoice code:</strong> {booking.reservation_code ? booking.reservation_code : 'Chưa rõ'}
                           </p>
                         </div>
                         <div style={{ flex: '1 1 30%' }}>
                           <p className="mb-2">
-                            <strong>Số điện thoại:</strong> {booking.tel}
+                            <strong>Phone number:</strong> {booking.tel}
                           </p>
                           <p className="mb-2">
-                            <strong>Số người:</strong> {booking.party_size}
+                            <strong>Number of guests:</strong> {booking.party_size}
                           </p>
                         </div>
                         <div style={{ flex: '1 1 30%' }}>
                           <p className="mb-2">
-                            <strong>Ngày đặt:</strong> {formatDateTime(booking.reservation_date)}
+                            <strong>Reservation date:</strong> {formatDateTime(booking.reservation_date)}
                           </p>
                           <p className="mb-2">
-                            <strong>Số bàn:</strong> {(booking.tableName && booking.status !== 1 && booking.status !== 2) ? booking.tableName : 'Chưa có'}
+                            <strong>Table number:</strong> {(booking.tableName && booking.status !== 1 && booking.status !== 2) ? booking.tableName : 'Chưa có'}
                           </p>
                         </div>
                       </div>
@@ -346,11 +346,11 @@ export default function MyBooking() {
                             </button>
                           )} */}
                           <button className="btn btn-outline-success btn-sm mt-2" onClick={() => handleDetail(booking.id)} style={{ padding: '0.25rem 0.75rem' }}>
-                            Xem chi tiết
+                            View details
                           </button>
                           {(statusInfo.text === 'Chờ thanh toán cọc') && (
                             <button className="btn btn-primary btn-sm mt-2 ms-2" onClick={() => addTable(booking.id , booking.reservation_date, booking.deposit)} style={{ padding: '0.25rem 0.75rem' }}>
-                              Thanh toán
+                              Pay now
                             </button>
                           )}
                           {(statusInfo.text === 'Đã thanh toán cọc') && (canCancelReservation(booking.reservation_date)) && (booking.number_change == 1) && (
@@ -374,14 +374,14 @@ export default function MyBooking() {
                                 discount: booking.discount
                               })}
                             >
-                              Yêu cầu thay đổi món ăn
+                              Request dish change
                             </button>
                           )}
                         </div>
                       </div>
                       {booking.deposit > booking.total_amount && (
                         <span style={{ fontSize: '12px', color: 'red' }}>
-                          Do bạn đã thanh toán cọc trước khi yêu cầu đổi món và tổng tiền hiện đang nhỏ hơn tiền cọc, khi bạn đến ăn nhà hàng sẽ trả lại bạn.
+                          Because you paid the deposit before requesting a dish change and the current total is less than the deposit, the restaurant will refund you when you arrive.
                         </span>
                       )}
                     </div>
@@ -419,8 +419,8 @@ export default function MyBooking() {
         </>
       )}
 
-      <SuccessAlert open={openSuccess} onClose={handleSuccessClose} message="Thao tác thành công!" />
-      <DangerAlert open={openDanger} onClose={handleDangerClose} message="Không có bàn trống!" />
+      <SuccessAlert open={openSuccess} onClose={handleSuccessClose} message="Operation completed successfully!" />
+      <DangerAlert open={openDanger} onClose={handleDangerClose} message="No tables availabale!" />
       <DialogConfirm open={open} onClose={handleClose} onConfirm={() => handleUpdateStatus(2)} />
     </div>
   );
