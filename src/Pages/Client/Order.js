@@ -115,7 +115,7 @@ export default function Order() {
     );
 
     if (Object.keys(filteredProducts).length === 0) {
-      setSnackbarMessage("Vui lòng chọn ít nhất một sản phẩm.");
+      setSnackbarMessage("Please select at least one product.");
       setOpenSnackbar(true);
       return;
     }
@@ -151,18 +151,18 @@ export default function Order() {
       <div className="container-fluid p-0 py-5 bg-dark hero-header mb-5">
         <div className="container text-center my-5 pt-5 pb-4">
           <h1 className="display-3 text-white mb-3 animated slideInDown">
-            Đặt bàn online
+            Book A Table Online
           </h1>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb justify-content-center text-uppercase">
               <li className="breadcrumb-item">
-                <a href="#">Trang chủ</a>
+                <a href="#">Home</a>
               </li>
               <li
                 className="breadcrumb-item text-white active"
                 aria-current="page"
               >
-                Đặt bàn
+                Book A Table
               </li>
             </ol>
           </nav>
@@ -174,27 +174,27 @@ export default function Order() {
           <div className="col-lg-4 col-md-6 bg-warning p-5">
             <div className="text-center mb-4">
               <h1 className="text-white section-title ff-secondary">
-                Thông tin đặt bàn
+                Booking Information
               </h1>
             </div>
             <p className="mb-4 mt-4 text-dark text-start">
-              <strong>Họ tên:</strong> {customerInfo.fullname}
+              <strong>Full name:</strong> {customerInfo.fullname}
             </p>
             <p className="mb-4 text-dark text-start">
               <strong>Email:</strong> {customerInfo.email}
             </p>
             <p className="mb-4 text-dark text-start">
-              <strong>Số điện thoại:</strong> {customerInfo.tel}
+              <strong>Phone number:</strong> {customerInfo.tel}
             </p>
             <p className="mb-4 text-dark text-start">
-              <strong>Thời gian đặt bàn:</strong>{" "}
+              <strong>Reservation time:</strong>{" "}
               {formatTime(customerInfo.reservation_date)}
             </p>
             <p className="mb-4 text-dark text-start">
-              <strong>Số người:</strong> {customerInfo.party_size} người
+              <strong>Number of guests:</strong> {customerInfo.party_size} người
             </p>
             <p className="mb-4 text-dark text-start">
-              <strong>Ghi chú:</strong> {customerInfo.note}
+              <strong>Note:</strong> {customerInfo.note}
             </p>
           </div>
 
@@ -215,7 +215,7 @@ export default function Order() {
               {productCategoryState.product_category
                 .filter(
                   (category) =>
-                    category.name !== "Chưa phân loại" &&
+                    category.name !== "Uncategorized" &&
                     products.some(
                       (product) => product.categories_id === category.id
                     )
@@ -314,20 +314,20 @@ export default function Order() {
 
               {/* Display the list of selected products */}
               <div className="selected-products mt-4">
-                <h4 className="text-center mb-3">Danh sách món đã chọn</h4>
+                <h4 className="text-center mb-3">Selected Dishes</h4>
                 {Object.keys(selectedProducts).length === 0 ? (
                   <p className="text-center text-muted">
-                    Chưa có món nào được chọn.
+                    No dishes selected yet.
                   </p>
                 ) : (
                   <div className="scrollable-list">
                     <table className="table table-striped">
                       <thead>
                         <tr>
-                          <th scope="col">Món ăn</th>
-                          <th scope="col">Số lượng</th>
-                          <th scope="col">Giá</th>
-                          <th scope="col">Thành tiền</th>
+                          <th scope="col">Dish</th>
+                          <th scope="col">Number</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Total</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -364,14 +364,14 @@ export default function Order() {
               </div>
 
               <div className="text-end text-warning mt-4 ">
-                <strong>Tổng tiền: {formatPrice(calculateTotalPrice())}</strong>
+                <strong>Total: {formatPrice(calculateTotalPrice())}</strong>
               </div>
 
               <hr />
 
               <div className="text-end">
                 <NavLink to="/booking" className="btn btn-secondary me-2">
-                  Trở lại
+                  Back
                 </NavLink>
                 <NavLink
                   to="/pay"
@@ -381,7 +381,7 @@ export default function Order() {
                     handleNext();
                   }}
                 >
-                  Tiếp theo
+                  Next
                 </NavLink>
               </div>
             </div>
