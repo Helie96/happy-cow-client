@@ -25,33 +25,32 @@ export default function ClientHeader() {
     return name.length > maxLength ? name.slice(0, maxLength) + '...' : name;
   };
 
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
         <NavLink to="/" className="navbar-brand p-0 d-flex align-items-center">
           <img src="../../Assets/Client/Images/huong-sen-logo.png" alt="Logo" className="mr-2" />
-          <h3 className="ff-secondary text-start text-primary fw-normal m-0">Hương Sen</h3>
+          <h3 className="ff-secondary text-start text-primary fw-normal m-0">Happy Cow</h3>
         </NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
           <span className="fa fa-bars"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto py-0 pe-4">
-            <NavLink to="/" className="nav-item nav-link" activeClassName="active">Trang chủ</NavLink>
-            <NavLink to="/menu" className="nav-item nav-link" activeClassName="active">Thực đơn</NavLink>
-            <NavLink to="/service" className="nav-item nav-link" activeClassName="active">Dịch vụ</NavLink>
-            <NavLink to="/blog" className="nav-item nav-link" activeClassName="active">Tin tức & Mẹo hay</NavLink>
+            <NavLink to="/" className="nav-item nav-link" activeClassName="active">Home</NavLink>
+            <NavLink to="/menu" className="nav-item nav-link" activeClassName="active">Menu</NavLink>
+            <NavLink to="/service" className="nav-item nav-link" activeClassName="active">Services</NavLink>
+            <NavLink to="/blog" className="nav-item nav-link" activeClassName="active">News & Tips</NavLink>
             <div className="nav-item dropdown">
-              <Link to="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Khác</Link>
+              <Link to="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">More</Link>
               <div className="dropdown-menu m-0">
-                <NavLink to="/about" className="dropdown-item" activeClassName="active">Về chúng tôi</NavLink>
-                <NavLink to="/contact" className="dropdown-item" activeClassName="active">Liên hệ</NavLink>
+                <NavLink to="/about" className="dropdown-item" activeClassName="active">About Us</NavLink>
+                <NavLink to="/contact" className="dropdown-item" activeClassName="active">Contact</NavLink>
               </div>
             </div>
           </div>
           <NavLink to="/booking" className="btn btn-primary btn-sm rounded py-2 px-4 ms-1 me-1" style={{ color: 'black' }}>
-            Đặt bàn
+            Book a Table
           </NavLink>
           {user ? (
             <div className="dropdown ms-2">
@@ -81,14 +80,26 @@ export default function ClientHeader() {
                 <li className="dropdown-header">
                   <strong>{truncateName(user.fullname, 15)}</strong>
                 </li>
-                <li><NavLink className="dropdown-item" to="/account" activeClassName="active">Thông tin tài khoản</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/my-bookings" activeClassName="active">Đơn đặt bàn của tôi</NavLink></li>
-                <li><button className="dropdown-item" onClick={handleLogout}>Đăng xuất</button></li>
+                <li>
+                  <NavLink className="dropdown-item" to="/account" activeClassName="active">
+                    Account Information
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/my-bookings" activeClassName="active">
+                    My Reservations
+                  </NavLink>
+                </li>
+                <li>
+                  <button className="dropdown-item" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
               </ul>
             </div>
           ) : (
             <NavLink to="/login" className="btn btn-primary btn-sm rounded py-2 px-4 ms-1" style={{ color: 'black' }}>
-              <i className="fa-solid fa-user"></i> Đăng nhập
+              <i className="fa-solid fa-user"></i> Login
             </NavLink>
           )}
         </div>
